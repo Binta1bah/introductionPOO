@@ -5,6 +5,8 @@ interface Evaluations
     public function EvaluerEtudiant($dateEvaluation);
 }
 
+
+
 class Etudiant
 {
     //proprietes
@@ -14,12 +16,11 @@ class Etudiant
     public $dateNaissance;
 
     //Constucteur
-    public function __construct($matricule, $nom, $prenom, $dateNaissance)
+    public function __construct($matricule, $nom, $prenom)
     {
         $this->setMatricule($matricule);
         $this->setNom($nom);
         $this->setPrenom($prenom);
-        $this->setDateNaissance($dateNaissance);
     }
 
     //getter de chaque propriété
@@ -100,7 +101,8 @@ class Etudiant
 }
 
 // Instanciation et appel des méthodes
-$etudiant1 = new Etudiant("Binta123", "Bah", "Binta", "01-01-1990");
+$etudiant1 = new Etudiant("Binta123", "Bah", "Binta");
+$etudiant1->setDateNaissance("01-01-1990");
 $etudiant1->Presenter();
 $etudiant1->FaireCours();
 $etudiant1->FaireEvaluation();
@@ -114,10 +116,10 @@ class Professeur extends Etudiant implements Evaluations
     private $salaire;
     private $specialite;
 
-    public function __construct($matricule, $nom, $prenom, $dateNaissance, $voiture, $salaire, $specialite)
+    public function __construct($matricule, $nom, $prenom, $voiture, $salaire, $specialite)
     {
 
-        parent::__construct($matricule, $nom, $prenom, '');
+        parent::__construct($matricule, $nom, $prenom);
         $this->setVoiture($voiture);
         $this->setSalaire($salaire);
         $this->setspecialite($specialite);
@@ -169,14 +171,6 @@ class Professeur extends Etudiant implements Evaluations
         }
     }
 
-    // Rediffinition de la fonction setDateNaissance
-    public function setDateNaissance($newDateNaissance)
-    {
-
-        $this->dateNaissance = $newDateNaissance;
-    }
-
-
 
     // Rediffinition de la fonction Presenter
     public function Presenter()
@@ -202,6 +196,6 @@ class Professeur extends Etudiant implements Evaluations
     }
 }
 
-$Professeur1 = new Professeur("Sadio123", "Bah", "Sadio", '', true, "50000000", "Reseau Informatique");
+$Professeur1 = new Professeur("Sadio123", "Bah", "Sadio", true, "5000000", "Reseau Informatique");
 $Professeur1->Presenter();
 $Professeur1->EvaluerEtudiant("01-11-2023");
